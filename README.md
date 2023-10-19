@@ -1,5 +1,5 @@
 ```mermaid
-flowchart TD;
+flowchart LR;
 
 A[User] -->|Changes| B(Dev)
 B --> C{Bandit&Super-Linter Test Passed?}
