@@ -1,20 +1,20 @@
 graph TD
   subgraph Dev
-    A((Develop<br>Code))
-    B((Code<br>Review))
-    C((Merge<br>Changes))
+    A((Develop Code))
+    B((Code Review))
+    C((Merge Changes))
   end
-  
+
   subgraph Test
-    D((Deploy to<br>Test Environment))
-    E((Run<br>Tests))
-    F((Review<br>Results))
+    D((Deploy to Test Environment))
+    E((Run Tests))
+    F((Review Results))
   end
-  
+
   subgraph Prod
-    G((Deploy to<br>Production Environment))
-    H((Monitor<br>Performance))
-    I((Handle<br>Issues))
+    G((Deploy to Production Environment))
+    H((Monitor Performance))
+    I((Handle Issues))
   end
 
   A -->|Code Review Passed| C
