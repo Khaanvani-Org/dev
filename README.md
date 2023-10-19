@@ -1,29 +1,13 @@
-graph TD
-  // ... 
-graph TD
-  subgraph Dev
-    A((Develop Code))
-    B((Code Review))
-    C((Merge Changes))
-  end
+flowchart LR
 
-  subgraph Test
-    D((Deploy to Test Environment))
-    E((Run Tests))
-    F((Review Results))
-  end
-
-  subgraph Prod
-    G((Deploy to Production Environment))
-    H((Monitor Performance))
-    I((Handle Issues))
-  end
-
-  A -->|Code Review Passed| C
-  C -->|Deploy to Test| D
-  D -->|Tests Passed| E
-  E -->|Review Passed| F
-  F -->|Deploy to Prod| G
-  G -->|Healthy| H
-  H -->|Issues Occur| I
-  I -->|Resolved| A
+A[User] -->|Changes| B(Dev)
+B --> C{Bandit & 
+Super-Linter 
+Test Passed?}
+C -->|Success| D(Test)
+D -->E{Bandit, 
+Super-Linter,
+Selnium,
+Wapiti
+Test Passed} 
+E -->|Success| F(Prod)
