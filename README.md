@@ -1,4 +1,5 @@
-flowchart LR
+```mermaid
+flowchart TD;
 
 A[User] -->|Changes| B(Dev)
 B --> C{Bandit & 
