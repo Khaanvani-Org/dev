@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-app
+          image: vidushimodi/pd-chatbot:v0
+          resources:
+            limits:
+              memory: "256Mi"  # Example memory limit
+              cpu: "500m"       # Example CPU limit
+            requests:
+              memory: "128Mi"  # Example memory request
+              cpu: "250m"       # Example CPU request
