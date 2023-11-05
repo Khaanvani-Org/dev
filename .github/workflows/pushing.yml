@@ -49,7 +49,7 @@ jobs:
        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
       with:
         source_file: 'try.py'
-        destination_repo: 'Khaanvani-Org/test'
+        destination_repo: 'Khaanvani-Org/prod'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
         
@@ -59,7 +59,7 @@ jobs:
        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
       with:
         source_file: 'README.md'
-        destination_repo: 'Khaanvani-Org/test'
+        destination_repo: 'Khaanvani-Org/prod'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
 
@@ -69,7 +69,7 @@ jobs:
        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
       with:
         source_file: 'Dockerfile'
-        destination_repo: 'Khaanvani-Org/test'
+        destination_repo: 'Khaanvani-Org/prod'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
 
@@ -79,7 +79,7 @@ jobs:
        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
       with:
         source_file: 'code/'
-        destination_repo: 'Khaanvani-Org/test'
+        destination_repo: 'Khaanvani-Org/prod'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
 
@@ -89,7 +89,7 @@ jobs:
        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
       with:
         source_file: 'k8s/'
-        destination_repo: 'Khaanvani-Org/test'
+        destination_repo: 'Khaanvani-Org/prod'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
 
@@ -99,7 +99,7 @@ jobs:
        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
       with:
         source_file: 'requirements.txt'
-        destination_repo: 'Khaanvani-Org/test'
+        destination_repo: 'Khaanvani-Org/prod'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'   
 
@@ -109,7 +109,7 @@ jobs:
        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
       with:
         source_file: '.env'
-        destination_repo: 'Khaanvani-Org/test'
+        destination_repo: 'Khaanvani-Org/prod'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
 
@@ -119,7 +119,7 @@ jobs:
        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
       with:
         source_file: 'pytest.py'
-        destination_repo: 'Khaanvani-Org/test'
+        destination_repo: 'Khaanvani-Org/prod'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'   
 
@@ -129,7 +129,7 @@ jobs:
        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
       with:
         source_file: 'test.py'
-        destination_repo: 'Khaanvani-Org/test'
+        destination_repo: 'Khaanvani-Org/prod'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'  
 
