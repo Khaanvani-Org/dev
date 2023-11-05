@@ -61,7 +61,7 @@ def test_urgent_request(chatbot_fixture):
 def test_question_about_safety(chatbot_fixture):
     chatbot_instance = chatbot_fixture
     response = chatbot_instance.respond("How can I stay safe in a mine?")
-    assert "safety measures" in response  # Check if the response provides safety information.
+    assert "safety measures" in response  # Check if the response provides safety informat
 
 def test_positive_feedback(chatbot_fixture):
     chatbot_instance = chatbot_fixture
