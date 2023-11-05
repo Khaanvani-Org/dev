@@ -1,9 +1,9 @@
 
 # Khaanvani Project Test 
 ------------------------------------------------------------------------------
-[![Security: Bandit](https://img.shields.io/badge/Security-Bandit-yellow.svg)](https://github.com/PyCQA/bandit)
-![Dynamic Security: Wapiti](https://img.shields.io/badge/Dynamic_Security-Wapiti-red.svg)
-![Testing: Pytest](https://img.shields.io/badge/:Testing-Pytest-blue.svg)
+[![SAST Bandit](https://img.shields.io/badge/SAST-Bandit-yellow.svg)](https://github.com/PyCQA/bandit)
+![DAST: Wapiti](https://img.shields.io/badge/DAST-Wapiti-red.svg)
+![Functional Testing: Pytest](https://img.shields.io/badge/:Functional_Testing-Pytest-blue.svg)
 ![Dynamic Testing: Code_Coverage](https://img.shields.io/badge/:Dynamic_Testing-Code_Coverage-green.svg)
 ![IAC: Terraform](https://img.shields.io/badge/:IAC-Terraform-purple.svg)
 
