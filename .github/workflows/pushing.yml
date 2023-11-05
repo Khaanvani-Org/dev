@@ -112,24 +112,3 @@ jobs:
         destination_repo: 'Khaanvani-Org/prod'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
-
-    - name: pytest.py
-      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
-      env:
-       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
-      with:
-        source_file: 'pytest.py'
-        destination_repo: 'Khaanvani-Org/prod'
-        user_email: 'eng21ct0039@dsu.edu.in'
-        user_name: 's-sukriti'   
-
-    - name: test.py
-      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
-      env:
-       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
-      with:
-        source_file: 'test.py'
-        destination_repo: 'Khaanvani-Org/prod'
-        user_email: 'eng21ct0039@dsu.edu.in'
-        user_name: 's-sukriti'  
-
