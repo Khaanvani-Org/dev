@@ -6,34 +6,35 @@ on:
       - main
 
 jobs:
-  bandit_scan:
+  pytest:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Set Git identity
-        run: |
-          git config --global user.email "eng21ct0039@dsu.edu.in"
-          git config --global user.name "Sukriti"
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8  # Choose the Python version you need
 
-      - name: Install Bandit
-        run: |
-          pip install bandit
-          bandit -r .
+    - name: Install dependencies
+      run: |
+        pip install pytest
 
-  wapiti_scan:
-    runs-on: ubuntu-latest
-    needs: bandit_scan
-    steps:
-      - name: Install Wapiti
-        run: |
-          sudo apt-get -y install wapiti
-          wapiti -u https://khaanvaani.streamlit.app/
-          
+  
+    - name: Debug
+      run: |
+        echo "Current directory: $(pwd)"
+        echo "Contents of the current directory: $(ls)"
+
+
+    - name: Run tests
+      run:  python pytest.py
+      
   copy-file:
     runs-on: ubuntu-latest
-    needs: [bandit_scan, wapiti_scan]
+    needs: [pytest]
     permissions:
       contents: write
       packages: write
@@ -82,6 +83,16 @@ jobs:
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
 
+    - name: k8s
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: 'k8s/'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'
+
     - name: requirements.txt
       uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
       env:
@@ -91,4 +102,34 @@ jobs:
         destination_repo: 'Khaanvani-Org/test'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'   
+
+    - name: .env
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: '.env'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'
+
+    - name: pytest.py
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: 'pytest.py'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'   
+
+    - name: test.py
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: 'test.py'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'  
 
