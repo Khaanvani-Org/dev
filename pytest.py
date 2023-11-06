@@ -1,4 +1,4 @@
-from maiin import Chatbot
+from chatbot import maiin
 import pytest
 
 
