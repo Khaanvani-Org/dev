@@ -2,13 +2,21 @@ from sentence_transformers import SentenceTransformer
 import pinecone
 import openai
 import streamlit as st
+import json
 
-# Set up your OpenAI API key (replace this with a more secure method)
-openai.api_key = "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"
 
-# Initialize Pinecone and Sentence Transformer
+
+with open('config.json') as config_file:
+    config = json.load(config_file)
+    openai_api_key = config.get('openai_api_key')
+    pinecone_api_key = config.get('pinecone_api_key')
+
+# Set the OpenAI API key using the extracted key
+openai.api_key = openai_api_key
+
+
 model = SentenceTransformer('all-MiniLM-L6-v2')
-pinecone.init(api_key='de3defb8-3e52-4ccf-82b1-9d785b981ec5', environment='gcp-starter')
+pinecone.init(api_key= pinecone_api_key, environment='gcp-starter')
 index = pinecone.Index('langchain-chatbot')
 
 def find_match(input):

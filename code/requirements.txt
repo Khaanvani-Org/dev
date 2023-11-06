@@ -5,5 +5,6 @@ sentence_transformers
 pinecone-client
 openai
 os
+json
 
 

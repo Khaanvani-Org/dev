@@ -11,6 +11,9 @@ import streamlit as st
 from streamlit_chat import message
 from utils import *
 
+import json
+
+
 st.header("KhaanVaani")
 
 try:
@@ -20,7 +23,13 @@ try:
     if 'requests' not in st.session_state:
         st.session_state['requests'] = []
 
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key="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")
+    # llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key="")
+    
+    with open('config.json') as config_file:
+        config = json.load(config_file)
+        api_key = config.get('openai_api_key')
+
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=api_key)
 
     if 'buffer_memory' not in st.session_state:
         st.session_state.buffer_memory = ConversationBufferWindowMemory(k=5, return_messages=True)
@@ -71,3 +80,8 @@ with response_container:
                     message(st.session_state["requests"][i], is_user=True, key=str(i) + '_user')
             except Exception as e:
                 st.error("An error occurred while displaying messages: " + str(e))
+
+
+with st.sidebar:
+    st.title("KhaanVaani")
+    
