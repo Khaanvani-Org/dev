@@ -1,3 +1,18 @@
+import os
+import sys
+
+# Get the current directory of pytest.py
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Add the 'code' directory to the Python path
+code_dir = os.path.join(current_dir, 'code')
+sys.path.insert(0, code_dir)
+
+# Now you can import the chatbot module from the code directory
+from chatbot import chatbot
+
+# Rest of your pytest code
+
 from requirements import chatbot
 
 import pytest
