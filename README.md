@@ -1,5 +1,5 @@
 
-# Khaanvani Project- A Chatbot
+# Khaanvani - A Chatbot
 ------------------------------------------------------------------------------
 [![SAST Bandit](https://img.shields.io/badge/SAST-Bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 ![DAST: Wapiti](https://img.shields.io/badge/DAST-Wapiti-red.svg)
