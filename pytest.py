@@ -1,4 +1,5 @@
 from chatbot import chatbot
+from Langchain_Pinecone_Indexing_.ipynb import ChatOpenAI
 import pytest
 
 
