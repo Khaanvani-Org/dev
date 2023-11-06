@@ -1,5 +1,4 @@
 
-st.header("KhaanVaani")
 
 try:
     if 'responses' not in st.session_state:
