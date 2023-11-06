@@ -12,7 +12,7 @@ try:
     if 'buffer_memory' not in st.session_state:
         st.session_state.buffer_memory = ConversationBufferWindowMemory(k=5, return_messages=True)
 except Exception as e:
-    st.error("An error occurred during initialization: " + str(e))
+  
     llm = None
     st.session_state.buffer_memory = None
 
@@ -36,7 +36,7 @@ textcontainer = st.container()
 with textcontainer:
     query = st.text_input("Query: ", key="input")
     if query:
-        with st.spinner("typing..."):
+     
             try:
                 conversation_string = get_conversation_string()
                 refined_query = query_refiner(conversation_string, query)
