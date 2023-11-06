@@ -1,4 +1,4 @@
-from code import Chatbot
+from chatbot import Chatbot
 import pytest
 
 
