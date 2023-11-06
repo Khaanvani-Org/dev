@@ -1,3 +1,4 @@
+from main import Chatbot
 import pytest
 
 
