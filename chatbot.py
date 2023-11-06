@@ -14,7 +14,7 @@ try:
 except Exception as e:
   
     llm = None
-    st.session_state.buffer_memory = None
+    
 
 system_msg_template = SystemMessagePromptTemplate.from_template(
     template="""Answer the question as truthfully as possible using the provided context, 
