@@ -1,5 +1,5 @@
-from chatbot import chatbot
-from chatbot import ChatOpenAI
+from requirements import chatbot
+
 import pytest
 
 
