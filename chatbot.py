@@ -56,5 +56,4 @@ with response_container:
                 message(st.session_state['responses'][i], key=str(i))
                 if i < len(st.session_state['requests']):
                     message(st.session_state["requests"][i], is_user=True, key=str(i) + '_user')
-            except Exception as e:
-                st.error("An error occurred while displaying messages: " + str(e))
+         
