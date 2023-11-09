@@ -26,30 +26,24 @@ class Chatbot:
         ]
         return random.choice(jokes)
 
-# Instantiate the chatbot
-chatbot = Chatbot()
+def calculate_square(number):
+    result = number * number
+    thread_name = threading.current_thread().name
+    print(f"Square of {number} is {result} (Thread: {thread_name})")
+    time.sleep(2)
 
-# Conversation loop
-while True:
-  
+def main():
+    numbers = [1, 2, 3, 4, 5]
 
-    # Check if the user wants to exit
-    if any(command in user_input.lower() for command in chatbot.goodbye_commands):
-        print("Chatbot: Goodbye!")
-        break
+    threads = []
 
-    # Get the chatbot's response
-    response = chatbot.respond(user_input)
-    
-    # Print the chatbot's response
-    print("Chatbot:", response)
+    for number in numbers:
+        thread = threading.Thread(target=calculate_square, args=(number,))
+        threads.append(thread)
+        thread.start()
 
-    # Handle jokes separately for more interactive conversations
-    if "joke" in user_input.lower():
-        response = chatbot.tell_joke()
-        print("Chatbot:", response)
+    # Wait for all threads to complete
+    for thread in threads:
+        thread.join()
 
-    # Add more specific response handling based on user input if needed
-    # ...
-
-    # Continue the conversation loop
+    print("All threads have finished.")
