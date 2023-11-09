@@ -34,5 +34,4 @@ while True:
         print("Chatbot: Goodbye!")
         break
 
-    response = chatbot.respond(user_input)
-    print("Chatbot:", response)
+ 
