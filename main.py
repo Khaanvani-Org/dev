@@ -31,7 +31,7 @@ chatbot = Chatbot()
 
 # Conversation loop
 while True:
-    user_input = input("You: ")
+  
 
     # Check if the user wants to exit
     if any(command in user_input.lower() for command in chatbot.goodbye_commands):
