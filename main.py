@@ -5,16 +5,3 @@ class SimpleChatbot:
         else:
             return "I'm a simple chatbot. I may not understand everything. Ask me anything!"
 
-# Instantiate the chatbot
-chatbot = SimpleChatbot()
-
-# Conversation loop
-while True:
-
-
-    if user_input.lower() == "exit":
-        print("Chatbot: Goodbye!")
-        break
-
-    response = chatbot.respond(user_input)
-    print("Chatbot:", response)
