@@ -1,4 +1,5 @@
 
+
 class Chatbot:
     def respond(self, user_input):
         if "hello" in user_input.lower():
@@ -6,26 +7,24 @@ class Chatbot:
         else:
             return "I don't understand."
 
-# Instantiate the chatbot
-chatbot = Chatbot()
+# Test cases for the Chatbot class
+class TestChatbot(unittest.TestCase):
+    def setUp(self):
+        self.chatbot = Chatbot()
 
-# Conversation loop
-   
-while True:
-    try:
-        user_input = input("You: ")
-        # Do something with user input
-        # ...
-    except EOFError:
-        print("Input error: please enter some text.")
-        continue
-    else:
-        break
+    def test_hello_response(self):
+        response = self.chatbot.respond("Hello")
+        self.assertEqual(response, "Hi there!")
 
+    def test_hello_response_case_insensitive(self):
+        response = self.chatbot.respond("HeLLo")
+        self.assertEqual(response, "Hi there!")
 
-    if user_input.lower() == "exit":
-        print("Chatbot: Goodbye!")
-        break
+    def test_other_input_response(self):
+        response = self.chatbot.respond("What's the weather like?")
+        self.assertEqual(response, "I don't understand.")
 
-    response = chatbot.respond(user_input)
-    print("Chatbot:", response)
+    def test_exit_command(self):
+        response = self.chatbot.respond("exit")
+        self.assertNotEqual(response, "Chatbot: Goodbye!")  # Check that exit doesn't trigger goodbye
+
