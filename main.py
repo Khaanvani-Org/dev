@@ -1,4 +1,4 @@
-#import random
+import cha
 
 class SimpleChatbot:
     def __init__(self):
