@@ -25,6 +25,6 @@ class TestRandomCode(unittest.TestCase):
         classification = classify_numbers(numbers, average)
         self.assertEqual(classification, ["below average", "below average", "average", "above average", "above average"])
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     # Let's run the tests
-    unittest.main()
+    unittest.main()
