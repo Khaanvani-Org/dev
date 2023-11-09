@@ -8,7 +8,7 @@ class Chatbot:
             return "I don't understand."
 
 # Test cases for the Chatbot class
-class TestChatbot(unittest.TestCase):
+class TestChatbot(TestCase):
     def setUp(self):
         self.chatbot = Chatbot()
 
