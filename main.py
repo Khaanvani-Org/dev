@@ -1,21 +1,30 @@
-import openai
+import random
 
-class GeneralChatbot:
-    def __init__(self, api_key):
-        openai.api_key = api_key
-
+class Chatbot:
     def respond(self, user_input):
-        prompt = f"User: {user_input}\nChatbot:"
-        response = openai.Completion.create(
-            engine="text-davinci-002",
-            prompt=prompt,
-            max_tokens=150
-        )
-        return response.choices[0].text.strip()
+        user_input_lower = user_input.lower()
 
-# Replace "YOUR_API_KEY" with your actual OpenAI API key
-api_key = "YOUR_API_KEY"
-chatbot = GeneralChatbot(api_key)
+        if "hello" in user_input_lower:
+            return "Hi there!"
+        elif "how are you" in user_input_lower:
+            return "I'm doing well, thank you. How about you?"
+        elif "goodbye" in user_input_lower:
+            return "Goodbye! Have a great day!"
+        elif "joke" in user_input_lower:
+            return self.tell_joke()
+        else:
+            return "I don't understand. Can you ask me something else?"
+
+    def tell_joke(self):
+        jokes = [
+            "Why did the scarecrow win an award? Because he was outstanding in his field!",
+            "What do you call fake spaghetti? An impasta!",
+            "Why don't scientists trust atoms? Because they make up everything!"
+        ]
+        return random.choice(jokes)
+
+# Instantiate the chatbot
+chatbot = Chatbot()
 
 # Conversation loop
 while True:
