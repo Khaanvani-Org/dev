@@ -1,4 +1,4 @@
-import random
+#import random
 
 class Chatbot:
     def respond(self, user_input):
@@ -28,7 +28,7 @@ chatbot = Chatbot()
 
 # Conversation loop
 while True:
-    user_input = input("You: ")
+    #user_input = input("You: ")
 
     if user_input.lower() == "exit":
         print("Chatbot: Goodbye!")
