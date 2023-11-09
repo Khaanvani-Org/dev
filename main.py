@@ -1,4 +1,4 @@
-#import random
+import random
 
 class Chatbot:
     def respond(self, user_input):
