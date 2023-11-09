@@ -1,3 +1,5 @@
+
+import main  
 class Chatbot:
     def respond(self, user_input):
         if "hello" in user_input.lower():
