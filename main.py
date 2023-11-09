@@ -30,7 +30,7 @@ chatbot = Chatbot()
 while True:
     #user_input = input("You: ")
 
-    if user_input.lower() == "exit":
+   # if user_input.lower() == "exit":
         print("Chatbot: Goodbye!")
         break
 
