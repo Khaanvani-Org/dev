@@ -1,30 +1,30 @@
 import random
-import statistics
+import unittest
 
-def generate_random_numbers(num_elements):
-    return [random.randint(1, 100) for _ in range(num_elements)]
+def generate_random_numbers(size):
+    return [random.randint(1, 100) for _ in range(size)]
 
-def calculate_stats(numbers):
-    try:
-        sorted_numbers = sorted(numbers)
-        mean = statistics.mean(sorted_numbers)
-        std_dev = statistics.stdev(sorted_numbers)
-        return mean, std_dev
-    except statistics.StatisticsError as e:
-        print(f"Error calculating statistics: {e}")
-        return None, None
+def calculate_average(numbers):
+    return sum(numbers) / len(numbers) if numbers else 0
 
-def main():
-    num_elements = 10
-    random_numbers = generate_random_numbers(num_elements)
+def classify_numbers(numbers, average):
+    return ["above average" if num > average else "below average" for num in numbers]
 
-    print(f"Generated Random Numbers: {random_numbers}")
+class TestRandomCode(unittest.TestCase):
+    def test_generate_random_numbers(self):
+        result = generate_random_numbers(5)
+        self.assertEqual(len(result), 5)
 
-    mean, std_dev = calculate_stats(random_numbers)
+    def test_calculate_average(self):
+        average = calculate_average([1, 2, 3, 4, 5])
+        self.assertEqual(average, 3)
 
-    if mean is not None and std_dev is not None:
-        print(f"Mean: {mean}")
-        print(f"Standard Deviation: {std_dev}")
+    def test_classify_numbers(self):
+        numbers = [1, 2, 3, 4, 5]
+        average = calculate_average(numbers)
+        classification = classify_numbers(numbers, average)
+        self.assertEqual(classification, ["below average", "below average", "average", "above average", "above average"])
 
-if __name__ == "__main__":
-    main()
+if _name_ == "_main_":
+    # Let's run the tests
+    unittest.main()
