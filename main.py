@@ -1,4 +1,4 @@
-import random
+#import random
 
 class SimpleChatbot:
     def __init__(self):
@@ -25,7 +25,7 @@ class SimpleChatbot:
 chatbot = SimpleChatbot()
 
 # Example usage
-user_input = input("You: ")
+#user_input = input("You: ")
 while user_input.lower() != "exit":
     response = chatbot.respond(user_input)
     print("Chatbot:", response)
