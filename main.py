@@ -1,4 +1,4 @@
-import cha
+import main
 
 class SimpleChatbot:
     def __init__(self):
@@ -26,7 +26,7 @@ chatbot = SimpleChatbot()
 
 # Example usage
 #user_input = input("You: ")
-while user_input.lower() != "exit":
+#while user_input.lower() != "exit":
     response = chatbot.respond(user_input)
     print("Chatbot:", response)
     user_input = input("You: ")
