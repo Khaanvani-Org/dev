@@ -1,5 +1,4 @@
 
-import main  
 class Chatbot:
     def respond(self, user_input):
         if "hello" in user_input.lower():
@@ -11,8 +10,18 @@ class Chatbot:
 chatbot = Chatbot()
 
 # Conversation loop
+   
 while True:
-    user_input = input("You: ")
+    try:
+        user_input = input("You: ")
+        # Do something with user input
+        # ...
+    except EOFError:
+        print("Input error: please enter some text.")
+        continue
+    else:
+        break
+
 
     if user_input.lower() == "exit":
         print("Chatbot: Goodbye!")
