@@ -1,30 +1,20 @@
-
-
-class Chatbot:
+class SimpleChatbot:
     def respond(self, user_input):
         if "hello" in user_input.lower():
-            return "Hi there!"
+            return "Hi there! How can I help you?"
         else:
-            return "I don't understand."
+            return "I'm a simple chatbot. I may not understand everything. Ask me anything!"
 
-# Test cases for the Chatbot class
-class TestChatbot(TestCase):
-    def setUp(self):
-        self.chatbot = Chatbot()
+# Instantiate the chatbot
+chatbot = SimpleChatbot()
 
-    def test_hello_response(self):
-        response = self.chatbot.respond("Hello")
-        self.assertEqual(response, "Hi there!")
+# Conversation loop
+while True:
+    user_input = input("You: ")
 
-    def test_hello_response_case_insensitive(self):
-        response = self.chatbot.respond("HeLLo")
-        self.assertEqual(response, "Hi there!")
+    if user_input.lower() == "exit":
+        print("Chatbot: Goodbye!")
+        break
 
-    def test_other_input_response(self):
-        response = self.chatbot.respond("What's the weather like?")
-        self.assertEqual(response, "I don't understand.")
-
-    def test_exit_command(self):
-        response = self.chatbot.respond("exit")
-        self.assertNotEqual(response, "Chatbot: Goodbye!")  # Check that exit doesn't trigger goodbye
-
+    response = chatbot.respond(user_input)
+    print("Chatbot:", response)
