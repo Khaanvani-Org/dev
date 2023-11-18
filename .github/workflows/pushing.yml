@@ -30,7 +30,7 @@ jobs:
 
 
     - name: Run tests
-      run:  python pytest.py
+      run:  python main.py
       
   copy-file:
     runs-on: ubuntu-latest
