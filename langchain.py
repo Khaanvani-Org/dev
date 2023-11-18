@@ -1,5 +1,4 @@
 import langchain
-import openai
 {
   "cells": [
     {
