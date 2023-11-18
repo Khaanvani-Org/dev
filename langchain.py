@@ -1,6 +1,5 @@
-pip install langchain==0.0.279
-pip install openai==0.27.5
-
+import langchain
+import openai
 {
   "cells": [
     {
