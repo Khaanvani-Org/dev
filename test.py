@@ -1,38 +1,28 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.expected_conditions import presence_of_element_located
+from selenium.common.exceptions import WebDriverException
 
-# Specify the path to the ChromeDriver executable
-chrome_driver_path = "C:\\Users\\91881\\Desktop\\sih\\product development\\chromedriver-win64\\chromedriver.exe"
+try:
+    with webdriver.Firefox() as driver:
+        driver.get("https://khaanvaani.streamlit.app/")
+        
+        # Locate the search input field and send the search query
+        search_input = driver.find_element(By.NAME, "q")
+        search_input.send_keys("cheese" + Keys.RETURN)
+        
+        # Use WebDriverWait for waiting for the presence of the search results container
+        wait = WebDriverWait(driver, 10)
+        wait.until(presence_of_element_located((By.XPATH, '//div[@id="rcnt"]')))
+        
+        # Find all the search result links using a more specific XPath
+        results = driver.find_elements(By.XPATH, '//div[@class="tF2Cxc"]/div/a[@href]')
+        
+        # Print the search results
+        for i, elem in enumerate(results):
+            print(f'#{i + 1} {elem.text} ({elem.get_attribute("href")})')
 
-# Create Chrome options
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = "C:\\Users\\91881\\Downloads\\ChromeSetup.exe"  # Update with the actual path to Chrome
-chrome_options.add_argument("--headless")
-
-# Initialize the Chrome driver with options and the driver path
-#driver = webdriver.Chrome(executable_path=chrome_driver_path, chrome_options=chrome_options)
-
-# Define the URL of the webpage to interact with
-webpage_url = "https://khaanvaani.streamlit.app/"
-
-# Navigate to the webpage
-#chrome_driver_path.get(webpage_url)
-
-# Find the chat input field by tag name (input)
-driver.find_element(By.TAG_NAME,'input')
-
-# Start a conversation
-chat_input.send_keys("How can I assist you?")
-chat_input.send_keys(Keys.RETURN)
-
-# Wait for the chatbot's response (you may need to adjust the wait time)
-driver.implicitly_wait(5)
-
-# Capture the chatbot's response by finding a message element
-response = driver.find_element_by_class_name("st-dc")
-print("Chatbot: " + response.text)
-
-# Continue the conversation (repeat the same pattern for other interactions)
-
-# Close the browser when done
-driver.quit()
+except WebDriverException as e:
+    print(f"WebDriverException: {e}")
