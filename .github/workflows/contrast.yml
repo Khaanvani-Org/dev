@@ -50,6 +50,6 @@ jobs:
           orgId: ${{ secrets._CONTRAST_ORG_KEY }}
           authHeader: ${{ secrets.CONTRAST_AUTH_KEY }}
           apiUrl: ${{ secrets.CONTRAST_URL_KEY}}
-          filePath: config.json  # Replace with the path to your project configuration files
+          filePath: 'code/config.json'  # Replace with the path to your project configuration files
           severity: medium
           fail: true
