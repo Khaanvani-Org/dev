@@ -27,7 +27,11 @@ try:
     
     with open('config.json') as config_file:
         config = json.load(config_file)
-        api_key = config.get('openai_api_key')
+        api_key = config.get('openai_api_key',None)
+        
+    if api_key is None:
+        st.error("API key is missing or incorrect. Please provide a valid API key in the config.json file.")
+        st.stop() 
 
     llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=api_key)
 
@@ -57,19 +61,27 @@ textcontainer = st.container()
 
 with textcontainer:
     query = st.text_input("Query: ", key="input")
-    if query:
-        with st.spinner("typing..."):
-            try:
-                conversation_string = get_conversation_string()
-                refined_query = query_refiner(conversation_string, query)
-                st.subheader("Refined Query:")
-                st.write(refined_query)
-                context = find_match(refined_query)
+    # Within the block where you handle user queries and generate responses
+if query:
+    with st.spinner("typing..."):
+        try:
+            conversation_string = get_conversation_string()
+            refined_query = query_refiner(conversation_string, query)
+            st.subheader("Refined Query:")
+            st.write(refined_query)
+            context = find_match(query)
+            
+            # Check if the context pertains to coal mining before generating a response
+            if "coal" in context.lower() or "mine" in context.lower() or "hi" in context.lower() or "hello" in context.lower() or "hey" in context.lower():
                 response = conversation.predict(input=f"Context:\n {context} \n\n Query:\n{query}")
                 st.session_state.requests.append(query)
                 st.session_state.responses.append(response)
-            except Exception as e:
-                st.error("An error occurred during conversation: " + str(e))
+            else:
+                st.warning("This query is not related to coal mining. Please ask a question about coal mines.")
+                
+        except Exception as e:
+            st.error("An error occurred during conversation: " + str(e))
+
 
 with response_container:
     if st.session_state['responses']:
