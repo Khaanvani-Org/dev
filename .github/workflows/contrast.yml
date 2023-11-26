@@ -24,6 +24,16 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Debug Secrets
+        run: |
+          echo "CONTRAST_API_KEY  : $CONTRAST_API_KEY"
+          echo "AUTH_ID_TOKEN: $AUTH_ID_TOKEN"
+          echo "ORG_ID: $ORG_ID"
+          echo "API_URL_TOKEN: $API_URL_TOKEN"
+      - name: Debug Config File
+        run: cat code/config.json
+
+
       - name: Run Contrast Audit
         run: |
           # Download Contrast Security CLI
