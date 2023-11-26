@@ -40,7 +40,7 @@ jobs:
           FAIL=${FAIL:+"--fail"}
 
           # Run Contrast Audit
-          ./contrast audit -f config.json -t python --api-key $API_KEY --authorization $AUTHORIZATION --organization-id $ORGANIZATION_ID --host $HOST $IGNORE_DEV $FAIL --severity $SEVERITY --save
+          ./contrast audit -f 'code/config.json' -t python --api-key $API_KEY --authorization $AUTHORIZATION --organization-id $ORGANIZATION_ID --host $HOST $IGNORE_DEV $FAIL --severity $SEVERITY --save
         working-directory: ${{ runner.workspace }}
 
       - name: Contrast SCA Action
