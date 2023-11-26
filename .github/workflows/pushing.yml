@@ -19,7 +19,7 @@ jobs:
 
       - name: Install Bandit
         run: |
-         # pip install bandit
+          pip install bandit
           bandit -r .
 
   wapiti_scan:

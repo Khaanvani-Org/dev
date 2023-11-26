@@ -17,11 +17,13 @@ This repository hosts a Chatbot project that serves as an intelligent virtual as
 
 ## Tech Stack
 
--Python
+- Python
 
--Natural Language Processing (NLP)
+- LangChain
 
--Pinecone
+- Natural Language Processing (NLP)
+
+- Pinecone
 
 ## Tools:
 
