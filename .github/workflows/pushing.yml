@@ -62,33 +62,14 @@ jobs:
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
 
-    - name: Dockerfile
+    - name: src folder
       uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
       env:
        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
       with:
-        source_file: 'Dockerfile'
+        source_file: 'src/'
         destination_repo: 'Khaanvani-Org/test'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
 
-    - name: code folder
-      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
-      env:
-       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
-      with:
-        source_file: 'code/'
-        destination_repo: 'Khaanvani-Org/test'
-        user_email: 'eng21ct0039@dsu.edu.in'
-        user_name: 's-sukriti'
-
-    - name: requirements.txt
-      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
-      env:
-       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
-      with:
-        source_file: 'requirements.txt'
-        destination_repo: 'Khaanvani-Org/test'
-        user_email: 'eng21ct0039@dsu.edu.in'
-        user_name: 's-sukriti'   
-
+    
