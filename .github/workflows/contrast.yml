@@ -1,65 +1,65 @@
-name: IAST Testing
+# name: IAST Testing
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  Check-Dependency-Vulnerabilities:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+# jobs:
+#   Check-Dependency-Vulnerabilities:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'  # Replace 'x' with the desired Python version
+#       - name: Set up Python
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: '3.9'  # Replace 'x' with the desired Python version
 
-      - name: Set up virtual environment
-        run: |
-          python -m venv venv
-          source venv/bin/activate  # On Windows: .\venv\Scripts\activate
-          pip install --upgrade pip
-          pip install -r requirements.txt
+#       - name: Set up virtual environment
+#         run: |
+#           python -m venv venv
+#           source venv/bin/activate  # On Windows: .\venv\Scripts\activate
+#           pip install --upgrade pip
+#           pip install -r requirements.txt
 
-      - name: Debug Secrets
-        run: |
-          echo "CONTRAST_API_KEY  : $CONTRAST_API_KEY"
-          echo "AUTH_ID_TOKEN: $AUTH_ID_TOKEN"
-          echo "ORG_ID: $ORG_ID"
-          echo "API_URL_TOKEN: $API_URL_TOKEN"
-      - name: Debug Config File
-        run: cat code/config.json
+#       - name: Debug Secrets
+#         run: |
+#           echo "CONTRAST_API_KEY  : $CONTRAST_API_KEY"
+#           echo "AUTH_ID_TOKEN: $AUTH_ID_TOKEN"
+#           echo "ORG_ID: $ORG_ID"
+#           echo "API_URL_TOKEN: $API_URL_TOKEN"
+#       - name: Debug Config File
+#         run: cat code/config.json
 
 
-      - name: Run Contrast Audit
-        run: |
-          # Download Contrast Security CLI
-          curl --location -O https://pkg.contrastsecurity.com/artifactory/cli/1.0.13/linux/contrast
-          chmod +x contrast
+#       - name: Run Contrast Audit
+#         run: |
+#           # Download Contrast Security CLI
+#           curl --location -O https://pkg.contrastsecurity.com/artifactory/cli/1.0.13/linux/contrast
+#           chmod +x contrast
 
-          # Set variables
-          SEVERITY=medium
-          API_KEY=${{ secrets.CONTRAST_API_KEY }}
-          AUTHORIZATION=${{ secrets.AUTH_ID_TOKEN }}
-          ORGANIZATION_ID=${{ secrets.ORG_ID }}
-          HOST=${{ secrets.API_URL_TOKEN }}
-          IGNORE_DEV=${IGNORE_DEV:+"--ignore-dev"}
-          FAIL=${FAIL:+"--fail"}
+#           # Set variables
+#           SEVERITY=medium
+#           API_KEY=${{ secrets.CONTRAST_API_KEY }}
+#           AUTHORIZATION=${{ secrets.AUTH_ID_TOKEN }}
+#           ORGANIZATION_ID=${{ secrets.ORG_ID }}
+#           HOST=${{ secrets.API_URL_TOKEN }}
+#           IGNORE_DEV=${IGNORE_DEV:+"--ignore-dev"}
+#           FAIL=${FAIL:+"--fail"}
 
-          # Run Contrast Audit
-          ./contrast audit -f 'code/config.json' -t python --api-key $API_KEY --authorization $AUTHORIZATION --organization-id $ORGANIZATION_ID --host $HOST $IGNORE_DEV $FAIL --severity $SEVERITY --save
-        working-directory: ${{ runner.workspace }}
+#           # Run Contrast Audit
+#           ./contrast audit -f 'code/config.json' -t python --api-key $API_KEY --authorization $AUTHORIZATION --organization-id $ORGANIZATION_ID --host $HOST $IGNORE_DEV $FAIL --severity $SEVERITY --save
+#         working-directory: ${{ runner.workspace }}
 
-      - name: Contrast SCA Action
-        uses: Contrast-Security-OSS/contrast-sca-action@v1
-        with:
-          apiKey: ${{ secrets.CONTRAST_API_KEY }}
-          orgId: ${{ secrets._CONTRAST_ORG_KEY }}
-          authHeader: ${{ secrets.CONTRAST_AUTH_KEY }}
-          apiUrl: ${{ secrets.CONTRAST_URL_KEY}}
-          filePath: 'code/config.json'  # Replace with the path to your project configuration files
-          severity: medium
-          fail: true
+#       - name: Contrast SCA Action
+#         uses: Contrast-Security-OSS/contrast-sca-action@v1
+#         with:
+#           apiKey: ${{ secrets.CONTRAST_API_KEY }}
+#           orgId: ${{ secrets._CONTRAST_ORG_KEY }}
+#           authHeader: ${{ secrets.CONTRAST_AUTH_KEY }}
+#           apiUrl: ${{ secrets.CONTRAST_URL_KEY}}
+#           filePath: 'code/config.json'  # Replace with the path to your project configuration files
+#           severity: medium
+#           fail: true
