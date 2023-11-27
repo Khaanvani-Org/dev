@@ -3,7 +3,7 @@
 ------------------------------------------------------------------------------
 [![SAST Bandit](https://img.shields.io/badge/SAST-Bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 [![DAST: Wapiti](https://img.shields.io/badge/DAST-Wapiti-red.svg)](https://github.com/wapiti-scanner/wapiti)
-[![Functional Testing: Pytest/Selenium](https://img.shields.io/badge/:Functional_Testing-Pytest/-Selenium-blue.svg)](https://github.com/SeleniumHQ/selenium)
+[![Functional Testing: Selenium](https://img.shields.io/badge/:Functional_Testing-Selenium-blue.svg)](https://github.com/SeleniumHQ/selenium)
 [![Dynamic Testing: Code_Coverage](https://img.shields.io/badge/:Dynamic_Testing-Code_Coverage-green.svg)](https://github.com/marketplace/codecov)
 [![IAC: Terraform](https://img.shields.io/badge/:IAC-Terraform-purple.svg)](https://github.com/hashicorp/terraform)
 
