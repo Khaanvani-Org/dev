@@ -23,9 +23,6 @@ index = pinecone.Index('langchain-chatbot')
 
 
 def find_match(input):
-    """
-    Find the top 2 matches in the Pinecone index for the given input.
-    """
     try:
         input_em = model.encode(input).tolist()
         result = index.query(input_em, top_k=2, includeMetadata=True)
@@ -52,7 +49,7 @@ def query_refiner(conversation, query):
         return response['choices'][0]['text']
     except Exception as e:
         st.error("An error occurred during query refinement: " + str(e))
-        return ""
+        return "An error occurred during query refinement"
 
 
 def get_conversation_string():
@@ -67,6 +64,4 @@ def get_conversation_string():
         return conversation_string
     except Exception as e:
         st.error("An error occurred while generating conversation string: " + str(e))
-        return ""
-#
-#This  defines several functions for interacting with the Pinecone index, the SentenceTransformer model, and the OpenAI API. The `find_match` function queries the Pinecone index for the top 2 matches to the given input. The `query_refiner` function uses the OpenAI API to refine the given query based on the conversation log. Finally, the `get_conversation_string` function generates a conversation string from the stored conversation history..</s>
+        return "An error occurred while generating conversation string"

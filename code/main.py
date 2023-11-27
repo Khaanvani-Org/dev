@@ -14,7 +14,9 @@ from utils import *
 import json
 
 
-st.header("KhaanVaani")
+st.header("KhaanVaaniii")
+
+# Your existing code for initializing variables and Streamlit setup...
 
 try:
     if 'responses' not in st.session_state:
@@ -23,24 +25,28 @@ try:
     if 'requests' not in st.session_state:
         st.session_state['requests'] = []
 
-    # llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key="")
-    
     with open('config.json') as config_file:
         config = json.load(config_file)
-        api_key = config.get('openai_api_key',None)
+        api_key = config.get('openai_api_key', None)
         
     if api_key is None:
-        st.error("API key is missing or incorrect. Please provide a valid API key in the config.json file.")
-        st.stop() 
+        st.error("API key is missing. Please provide a valid API key in the config.json file.")
+        st.stop()
+    else:
+        llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=api_key)
 
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=api_key)
-
-    if 'buffer_memory' not in st.session_state:
-        st.session_state.buffer_memory = ConversationBufferWindowMemory(k=5, return_messages=True)
+        if 'buffer_memory' not in st.session_state:
+            st.session_state.buffer_memory = ConversationBufferWindowMemory(k=5, return_messages=True)
+except ValueError:
+    st.error("Incorrect API key provided. Please check and update the API key in the config.json file.")
+    st.stop()
 except Exception as e:
     st.error("An error occurred during initialization: " + str(e))
     llm = None
     st.session_state.buffer_memory = None
+
+# The rest of your Streamlit app code...
+
 
 system_msg_template = SystemMessagePromptTemplate.from_template(
     template="""Answer the question as truthfully as possible using the provided context, 
@@ -96,4 +102,4 @@ with response_container:
 
 with st.sidebar:
     st.title("KhaanVaani")
-    
+
