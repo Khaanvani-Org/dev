@@ -1,3 +1,4 @@
+
 from sentence_transformers import SentenceTransformer
 import pinecone
 import openai
@@ -5,7 +6,7 @@ import streamlit as st
 import json
 
 
-
+# Load the configuration file
 with open('config.json') as config_file:
     config = json.load(config_file)
     openai_api_key = config.get('openai_api_key')
@@ -15,11 +16,16 @@ with open('config.json') as config_file:
 openai.api_key = openai_api_key
 
 
+# Initialize the SentenceTransformer model and Pinecone index
 model = SentenceTransformer('all-MiniLM-L6-v2')
-pinecone.init(api_key= pinecone_api_key, environment='gcp-starter')
+pinecone.init(api_key=pinecone_api_key, environment='gcp-starter')
 index = pinecone.Index('langchain-chatbot')
 
+
 def find_match(input):
+    """
+    Find the top 2 matches in the Pinecone index for the given input.
+    """
     try:
         input_em = model.encode(input).tolist()
         result = index.query(input_em, top_k=2, includeMetadata=True)
@@ -28,7 +34,11 @@ def find_match(input):
         st.error("An error occurred during the match finding process: " + str(e))
         return ""
 
+
 def query_refiner(conversation, query):
+    """
+    Use the OpenAI API to refine the given query based on the conversation log.
+    """
     try:
         response = openai.Completion.create(
             model="text-davinci-003",
@@ -44,7 +54,11 @@ def query_refiner(conversation, query):
         st.error("An error occurred during query refinement: " + str(e))
         return ""
 
+
 def get_conversation_string():
+    """
+    Generate a conversation string from the stored conversation history.
+    """
     try:
         conversation_string = ""
         for i in range(len(st.session_state['responses'])-1):
@@ -54,3 +68,5 @@ def get_conversation_string():
     except Exception as e:
         st.error("An error occurred while generating conversation string: " + str(e))
         return ""
+#
+#This  defines several functions for interacting with the Pinecone index, the SentenceTransformer model, and the OpenAI API. The `find_match` function queries the Pinecone index for the top 2 matches to the given input. The `query_refiner` function uses the OpenAI API to refine the given query based on the conversation log. Finally, the `get_conversation_string` function generates a conversation string from the stored conversation history..</s>
