@@ -13,7 +13,6 @@ jobs:
         run: |
           git config --global user.email "eng21ct0039@dsu.edu.in"
           git config --global user.name "Sukriti"
-
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -30,7 +29,12 @@ jobs:
         run: |
           sudo apt-get -y install wapiti
           wapiti -u https://khaanvaani.streamlit.app/
-          
+      - name: Save Wapiti Scan Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: wapiti-scan-report
+          path: /home/runner/.wapiti/generated_report
+
   copy-file:
     runs-on: ubuntu-latest
     needs: [bandit_scan, wapiti_scan]
@@ -39,37 +43,35 @@ jobs:
       packages: write
       pages: write 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: try.py
-      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
-      env:
-       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
-      with:
-        source_file: 'try.py'
-        destination_repo: 'Khaanvani-Org/test'
-        user_email: 'eng21ct0039@dsu.edu.in'
-        user_name: 's-sukriti'
+      - name: try.py
+        uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+        with:
+          source_file: 'try.py'
+          destination_repo: 'Khaanvani-Org/test'
+          user_email: 'eng21ct0039@dsu.edu.in'
+          user_name: 's-sukriti'
         
-    - name: readme.md
-      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
-      env:
-       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
-      with:
-        source_file: 'README.md'
-        destination_repo: 'Khaanvani-Org/test'
-        user_email: 'eng21ct0039@dsu.edu.in'
-        user_name: 's-sukriti'
+      - name: readme.md
+        uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+        with:
+          source_file: 'README.md'
+          destination_repo: 'Khaanvani-Org/test'
+          user_email: 'eng21ct0039@dsu.edu.in'
+          user_name: 's-sukriti'
 
-    - name: src folder
-      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
-      env:
-       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
-      with:
-        source_file: 'src/'
-        destination_repo: 'Khaanvani-Org/test'
-        user_email: 'eng21ct0039@dsu.edu.in'
-        user_name: 's-sukriti'
-
-    
+      - name: src folder
+        uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+        with:
+          source_file: 'src/'
+          destination_repo: 'Khaanvani-Org/test'
+          user_email: 'eng21ct0039@dsu.edu.in'
+          user_name: 's-sukriti'
