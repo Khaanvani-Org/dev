@@ -28,11 +28,7 @@ jobs:
       - name: Install Wapiti
         run: |
           sudo apt-get -y install wapiti
-          wapiti -u https://khaanvaani.streamlit.app/ -f html -o /home/runner/.wapiti/generated_report.html
-
-      - name: List Files in .wapiti Directory
-        run: |
-          ls -la /home/runner/.wapiti
+          wapiti -u https://khaanvaani.streamlit.app/ -f html -o /home/runner/.wapiti/generated_report.html  # Corrected filename
 
       - name: Save Wapiti HTML Report
         uses: actions/upload-artifact@v2
