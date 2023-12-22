@@ -28,13 +28,13 @@ jobs:
       - name: Install Wapiti
         run: |
           sudo apt-get -y install wapiti
-          wapiti -u https://khaanvaani.streamlit.app/
+          wapiti -u https://khaanvaani.streamlit.app/ -f html -o /home/runner/.wapiti/generated_report.html
 
-      - name: Save Wapiti Scan Report
+      - name: Save Wapiti HTML Report
         uses: actions/upload-artifact@v2
         with:
-          name: wapiti-scan-report
-          path: /home/runner/.wapiti/scans/khaanvaani.streamlit.app_folder_dfa9d733.db
+          name: wapiti-html-report
+          path: /home/runner/.wapiti/generated_report.html
 
   copy-file:
     runs-on: ubuntu-latest
@@ -47,19 +47,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Copy Wapiti Scan Report
+      - name: Copy Wapiti HTML Report
         uses: actions/download-artifact@v2
         with:
-          name: wapiti-scan-report
-          path: /home/runner/.wapiti/scans/
+          name: wapiti-html-report
+          path: /home/runner/.wapiti/
 
-      - name: Display Wapiti Scan Report
-        run: cat /home/runner/.wapiti/scans/khaanvaani.streamlit.app_folder_dfa9d733.db
+      - name: Display Wapiti HTML Report
+        run: cat /home/runner/.wapiti/generated_report.html
 
       - name: try.py
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
         env:
-          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
         with:
           source_file: 'try.py'
           destination_repo: 'Khaanvani-Org/test'
@@ -69,7 +69,7 @@ jobs:
       - name: readme.md
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
         env:
-          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
         with:
           source_file: 'README.md'
           destination_repo: 'Khaanvani-Org/test'
@@ -79,7 +79,7 @@ jobs:
       - name: src folder
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
         env:
-          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
         with:
           source_file: 'src/'
           destination_repo: 'Khaanvani-Org/test'
