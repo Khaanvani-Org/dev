@@ -29,11 +29,12 @@ jobs:
         run: |
           sudo apt-get -y install wapiti
           wapiti -u https://khaanvaani.streamlit.app/
+
       - name: Save Wapiti Scan Report
         uses: actions/upload-artifact@v2
         with:
           name: wapiti-scan-report
-          path: /home/runner/.wapiti/generated_report
+          path: /home/runner/.wapiti/scans/khaanvaani.streamlit.app_folder_dfa9d733.db
 
   copy-file:
     runs-on: ubuntu-latest
@@ -45,6 +46,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Copy Wapiti Scan Report
+        uses: actions/download-artifact@v2
+        with:
+          name: wapiti-scan-report
+          path: /home/runner/.wapiti/scans/
+
+      - name: Display Wapiti Scan Report
+        run: cat /home/runner/.wapiti/scans/khaanvaani.streamlit.app_folder_dfa9d733.db
 
       - name: try.py
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
