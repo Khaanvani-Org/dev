@@ -30,6 +30,10 @@ jobs:
           sudo apt-get -y install wapiti
           wapiti -u https://khaanvaani.streamlit.app/ -f html -o /home/runner/.wapiti/generated_report.html
 
+      - name: List Files in .wapiti Directory
+        run: |
+          ls -la /home/runner/.wapiti
+
       - name: Save Wapiti HTML Report
         uses: actions/upload-artifact@v2
         with:
@@ -52,6 +56,10 @@ jobs:
         with:
           name: wapiti-html-report
           path: /home/runner/.wapiti/
+
+      - name: List Files in Copied Directory
+        run: |
+          ls -la /home/runner/.wapiti
 
       - name: Display Wapiti HTML Report
         run: cat /home/runner/.wapiti/generated_report.html
