@@ -28,13 +28,12 @@ jobs:
       - name: Install Wapiti
         run: |
           sudo apt-get -y install wapiti
-          wapiti -u https://khaanvaani.streamlit.app/ -f html -o /home/runner/.wapiti/generated_report.html  # Corrected filename
-
-      - name: Save Wapiti HTML Report
+          wapiti -u https://khaanvaani.streamlit.app/
+      - name: Save Wapiti Scan Report
         uses: actions/upload-artifact@v2
         with:
-          name: wapiti-html-report
-          path: /home/runner/.wapiti/generated_report.html
+          name: wapiti-scan-report
+          path: /home/runner/.wapiti/generated_report
 
   copy-file:
     runs-on: ubuntu-latest
@@ -47,24 +46,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Copy Wapiti HTML Report
-        uses: actions/download-artifact@v2
-        with:
-          name: wapiti-html-report
-          path: /home/runner/.wapiti/
-
-      - name: List Files in Copied Directory
-        run: |
-          ls -la /home/runner/.wapiti
-
-      - name: Display Wapiti HTML Report
-        run: cat /home/runner/.wapiti/khaanvaani.streamlit.app_12222023_1455.html
-
-
       - name: try.py
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
         env:
-          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
         with:
           source_file: 'try.py'
           destination_repo: 'Khaanvani-Org/test'
@@ -74,7 +59,7 @@ jobs:
       - name: readme.md
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
         env:
-          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
         with:
           source_file: 'README.md'
           destination_repo: 'Khaanvani-Org/test'
@@ -84,7 +69,7 @@ jobs:
       - name: src folder
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
         env:
-          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
         with:
           source_file: 'src/'
           destination_repo: 'Khaanvani-Org/test'
