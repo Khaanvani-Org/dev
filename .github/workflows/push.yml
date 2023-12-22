@@ -58,7 +58,8 @@ jobs:
           ls -la /home/runner/.wapiti
 
       - name: Display Wapiti HTML Report
-        run: cat /home/runner/.wapiti/generated_report.html
+        run: cat /home/runner/.wapiti/khaanvaani.streamlit.app_12222023_1455.html
+
 
       - name: try.py
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
