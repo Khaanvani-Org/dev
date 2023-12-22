@@ -1,7 +1,7 @@
 # This program adds two numbers
 
-num1 = 45
-num2 = 89
+num1 = 23
+num2 = 11
 
 # Add two numbers
 sum = num1 + num2
