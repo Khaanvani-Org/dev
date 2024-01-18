@@ -82,13 +82,43 @@ jobs:
           destination_repo: 'Khaanvani-Org/test'
           user_email: 'eng21ct0039@dsu.edu.in'
           user_name: 's-sukriti'
-
-      - name: src folder
+      
+      - name: main.py
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
         with:
-          source_file: 'src/'
+          source_file: 'main.py'
+          destination_repo: 'Khaanvani-Org/test'
+          user_email: 'eng21ct0039@dsu.edu.in'
+          user_name: 's-sukriti'
+      
+      - name: utils.py
+        uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+        with:
+          source_file: 'utils.py'
+          destination_repo: 'Khaanvani-Org/test'
+          user_email: 'eng21ct0039@dsu.edu.in'
+          user_name: 's-sukriti'
+
+      - name: requirements.txt
+        uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+        with:
+          source_file: 'requirements.txt'
+          destination_repo: 'Khaanvani-Org/test'
+          user_email: 'eng21ct0039@dsu.edu.in'
+          user_name: 's-sukriti'
+     
+     - name: config.json
+        uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+        with:
+          source_file: 'config.json'
           destination_repo: 'Khaanvani-Org/test'
           user_email: 'eng21ct0039@dsu.edu.in'
           user_name: 's-sukriti'
